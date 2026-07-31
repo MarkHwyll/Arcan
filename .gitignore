@@ -1,1 +1,16 @@
-!x86_64-arcan/docs
+.gitmodules
+./x86_64-arcan/kernel/target
+
+/target/
+**/target/
+
+*.iso
+*.bin
+*.img
+
+.zed/
+.idea/
+*.swp
+*.swo
+
+/docs/*/build/
