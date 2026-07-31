@@ -1,0 +1,3 @@
+[submodule "Arcan/x86_64-arcan"]
+path = Arcan/x86_64-arcan
+url = https://github.com/Arcan/x86_64-arcan
