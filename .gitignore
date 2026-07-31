@@ -1,8 +1,7 @@
 .gitmodules
-./x86_64-arcan/kernel/target
 
-/target/
-**/target/
+target/
+
 
 *.iso
 *.bin
