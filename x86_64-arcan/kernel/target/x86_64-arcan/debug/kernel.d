@@ -1,1 +1,0 @@
-/home/marc/Projects/Arcan/x86_64-arcan/kernel/target/x86_64-arcan/debug/kernel: /home/marc/Projects/Arcan/x86_64-arcan/kernel/src/interrupts.rs /home/marc/Projects/Arcan/x86_64-arcan/kernel/src/main.rs /home/marc/Projects/Arcan/x86_64-arcan/kernel/src/vga_buffer.rs
