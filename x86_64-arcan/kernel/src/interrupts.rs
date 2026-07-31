@@ -1,4 +1,5 @@
 #![allow(function_casts_as_integer)]
+#![allow(unused)]
 use crate::vga_buffer::{CURSOR_COL, CURSOR_ROW, Writer};
 use core::arch::asm;
 
@@ -77,7 +78,7 @@ pub fn init() {
         asm!("sti")
     }
 }
-
+// to add more of the cpu exceptions.
 extern "x86-interrupt" fn double_fault_handler(stack_frame: InterruptStackFrame, _error_code: u64) {
     panic!("\nDOUBLE FAULT EXCEPTION:\n{:#?}", stack_frame);
 }
@@ -86,14 +87,43 @@ extern "x86-interrupt" fn break_point_handler(stack_frame: InterruptStackFrame) 
     panic!("\nBREAKPOINT EXCEPTION:\n {:#?}", stack_frame);
 }
 
+// to add more Hardware interupts timer etc
 extern "x86-interrupt" fn keyboard_handler(_stack_frame: InterruptStackFrame) {
     unsafe {
         let mut port = Port::new(0x60);
         let scancode = port.read();
-        if scancode == 28 {
-            CURSOR_ROW += 1;
-            CURSOR_COL = 0;
+
+        if scancode >= 0x80 {
+            let mut pic_cmd = Port::new(0x20);
+            pic_cmd.write(0x20);
+            return;
         }
+
+        //backspace key
+        if scancode == 0x0E {
+            if CURSOR_COL > 0 {
+                CURSOR_COL -= 1;
+                //to add delete previous key logic
+            }
+            let mut pic_cmd = Port::new(0x20);
+            pic_cmd.write(0x20);
+            return;
+        }
+
+        //enter key //to fix doesn't work
+        // if scancode == 0x1C {
+        //     CURSOR_ROW += 1;
+        //     CURSOR_COL = 0;
+
+        //     if CURSOR_ROW == 25 {
+        //         CURSOR_ROW = 24;
+        //     }
+
+        //     let mut pic_cmd = Port::new(0x20);
+        //     pic_cmd.write(0x20);
+        //     return;
+        // }
+
         let offset = (CURSOR_ROW * 80 + CURSOR_COL) * 2;
         let mut writer = Writer::new_offset(offset);
 

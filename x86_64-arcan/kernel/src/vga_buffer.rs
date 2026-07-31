@@ -167,6 +167,7 @@ impl fmt::Write for Writer {
     }
 }
 
+//to fix print! macro doesn't work without a \n character for now use static mut for Writer::new to get desired outcome
 #[macro_export]
 macro_rules! print {
     ($($arg:tt)*) => ($crate::vga_buffer::_print(format_args!($($arg)*)));
