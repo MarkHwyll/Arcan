@@ -178,7 +178,7 @@ macro_rules! println {
     () => ($crate::print!("\n"));
     ($($arg:tt)*) => ($crate::print!("{}\n", format_args!($($arg)*)));
 }
-
+//todo: prevent chances of a deadlock where writer is locked to one thing such as timer and cannot be used in case of interrupt
 #[doc(hidden)]
 pub fn _print(args: fmt::Arguments) {
     use core::fmt::Write;
