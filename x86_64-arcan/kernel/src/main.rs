@@ -14,7 +14,7 @@ fn panic(info: &PanicInfo) -> ! {
 }
 
 #[unsafe(no_mangle)]
-extern "C" fn _start() {
+extern "C" fn _start() -> ! {
     interrupts::init();
 
     loop {}
