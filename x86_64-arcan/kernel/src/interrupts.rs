@@ -102,7 +102,7 @@ extern "x86-interrupt" fn keyboard_handler(_stack_frame: InterruptStackFrame) {
         //backspace key
         if scancode == 0x0E {
             if CURSOR_COL > 0 {
-                CURSOR_COL -= 1;
+                CURSOR_COL = CURSOR_COL.saturating_sub(1);
                 //to add delete previous key logic
             }
             let mut pic_cmd = Port::new(0x20);
@@ -127,10 +127,10 @@ extern "x86-interrupt" fn keyboard_handler(_stack_frame: InterruptStackFrame) {
         let offset = (CURSOR_ROW * 80 + CURSOR_COL) * 2;
         let mut writer = Writer::new_offset(offset);
 
-        if scancode < 0x80 {
-            if let Some(key) = get_key(scancode) {
-                writer.byte_writer_cursor_mvmnt(key);
-            }
+        if scancode < 0x80
+            && let Some(key) = get_key(scancode)
+        {
+            writer.byte_writer_cursor_mvmnt(key);
         }
 
         let mut pic_cmd = Port::new(0x20);

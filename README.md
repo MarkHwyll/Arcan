@@ -8,7 +8,7 @@
 
 ### Why??
 
-Okay let's all face the hash truth. I didn't build this kernel to be the next big thing or anything like that.
+Okay let's all face the harsh truth. I didn't build this kernel to be the next big thing or anything like that.
 To be honest, I built it because something felt missing, our data is all over the place, and for the average joe,
 you can't hide the fact that you have a digital profile all around you.
 

@@ -1,8 +1,8 @@
 .gitmodules
 
+/docs/src
 target/
-
-
+/docs/book.toml
 *.iso
 *.bin
 *.img

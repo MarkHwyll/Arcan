@@ -2,7 +2,7 @@
 #![no_std]
 #![feature(abi_x86_interrupt)]
 #![feature(array_ptr_get)]
-
+#![allow(clippy::empty_loop)]
 use core::panic::PanicInfo;
 mod interrupts;
 mod vga_buffer;
