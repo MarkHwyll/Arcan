@@ -5,7 +5,15 @@ edition = "2024"
 
 [dependencies]
 bootloader = "0.9"
+inalloc = { path = "../kernel/inalloc" }
 
 [[bin]]
 name = "kernel"
 path = "src/main.rs"
+
+[workspace]
+members = [
+    "inalloc",
+]
+[workspace.dependencies]
+bootloader = "0.9"

@@ -224,7 +224,7 @@ fn wait() {
 }
 
 impl ChainedPics {
-    unsafe fn new(offset1: u8, offset2: u8) -> Self {
+    fn new(offset1: u8, offset2: u8) -> Self {
         ChainedPics {
             pics: [
                 Pic {
@@ -241,7 +241,7 @@ impl ChainedPics {
         }
     }
 
-    unsafe fn initialize(&mut self) {
+    fn initialize(&mut self) {
         let (master_slice, slave_slice) = self.pics.split_at_mut(1);
         let master = &mut master_slice[0];
         let slave = &mut slave_slice[0];
