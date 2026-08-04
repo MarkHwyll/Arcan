@@ -6,7 +6,6 @@
 #![allow(clippy::empty_loop)]
 
 use core::panic::PanicInfo;
-use inalloc;
 mod interrupts;
 mod vga_buffer;
 
@@ -18,6 +17,7 @@ fn panic(info: &PanicInfo) -> ! {
 
 #[unsafe(no_mangle)]
 extern "C" fn _start() -> ! {
+    //init::initialize(bootinfo);
     interrupts::init();
 
     loop {}
