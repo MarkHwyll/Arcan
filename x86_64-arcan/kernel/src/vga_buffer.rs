@@ -1,4 +1,10 @@
+use core::clone::Clone;
+use core::cmp::{Eq, PartialEq};
+use core::derive;
+use core::fmt::Debug;
+use core::marker::Copy;
 use core::ptr::{read_volatile, write_volatile};
+use core::result::Result::Ok;
 
 const BUFFER_COLUMN: usize = 80;
 const BUFFER_ROW: usize = 25;
@@ -56,6 +62,7 @@ pub struct Writer {
 }
 
 impl Writer {
+    #[allow(unused)]
     pub fn new() -> Self {
         Writer {
             column_position: 0,

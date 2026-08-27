@@ -1,7 +1,19 @@
 #![allow(function_casts_as_integer)]
 #![allow(unused)]
+
 use crate::vga_buffer::{CURSOR_COL, CURSOR_ROW, Writer};
 use core::arch::asm;
+use core::array::from_fn;
+use core::clone::Clone;
+use core::fmt::Debug;
+use core::marker::Copy;
+use core::option::Option;
+use core::panic;
+use core::result::Result::Ok;
+use core::{
+    derive,
+    option::Option::{None, Some},
+};
 
 #[derive(Clone, Copy)]
 #[repr(C, packed)]
