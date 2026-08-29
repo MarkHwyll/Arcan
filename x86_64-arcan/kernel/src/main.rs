@@ -16,7 +16,7 @@ fn panic(info: &PanicInfo) -> ! {
 }
 
 #[unsafe(no_mangle)]
-extern "C" fn _start() -> ! {
+pub extern "C" fn _start() -> ! {
     //init::initialize(bootinfo);
     //interrupts::init();
     kernel::init();

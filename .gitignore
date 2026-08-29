@@ -6,8 +6,10 @@ target/
 *.iso
 *.bin
 *.img
+*.efi
 
-.zed/
+esp/
+zed/
 .idea/
 *.swp
 *.swo
