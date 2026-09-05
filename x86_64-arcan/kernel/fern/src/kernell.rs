@@ -1,7 +1,11 @@
 use uefi::CStr16;
 use uefi::boot::{self, ScopedProtocol};
-use uefi::proto::media::file::{File, FileAttribute, FileInfo, FileMode};
+use uefi::proto::media::file::{File, FileAttribute, FileInfo, FileMode, FileHandle};
 use uefi::proto::media::fs::SimpleFileSystem;
+use uefi::fs::FileSystem;
+use log::info;
+extern crate alloc;
+use alloc::vec::Vec;
 
 pub fn load_kernel_image(path: &CStr16) -> Vec<u64> {
     let handle =
@@ -13,8 +17,9 @@ pub fn load_kernel_image(path: &CStr16) -> Vec<u64> {
         .expect("ROOT DIRECTORY NOT FOUND./FAILED TO OPEN ROOT DIRECTORY");
     let mut image = root_dir
         .open(path, FileMode::Read, FileAttribute::READ_ONLY)
+        .into_regular_file().expect("Couldn't turn to regular file")
         .expect("COULD NOT RETRIVE FILE HANDLE");
-    let bytes = image.read();
-
+    let bytes = image.into().unwrap().read();
+    info!("{:#?}",bytes);
     bytes
 }

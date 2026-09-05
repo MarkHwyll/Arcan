@@ -11,6 +11,7 @@ mod vga_buffer;
 
 #[panic_handler]
 fn panic(info: &PanicInfo) -> ! {
+    println!("Just go outside\n");
     println!("Kernel panic: {:?}\n", info);
     loop {}
 }
